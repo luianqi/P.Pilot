@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from apps.users.models import User
+from apps.users.models import User, Assignee
 
 
 class RegisterSerializer(serializers.ModelSerializer):
@@ -34,3 +34,9 @@ class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "email", "password"]
+
+
+class AssigneeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Assignee
+        fields = ["id", "first_name", "last_name", "photo", "position"]

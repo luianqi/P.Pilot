@@ -62,3 +62,13 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return f"{self.role}"
+
+
+class Assignee(models.Model):
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+    photo = models.ImageField(upload_to="media")
+    position = models.CharField(max_length=100)
+
+    def __str__(self):
+        return f"{self.position}"

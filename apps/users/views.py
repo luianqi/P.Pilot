@@ -3,10 +3,11 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from apps.users.models import User
-from apps.users.serializers import RegisterSerializer, LoginSerializer
+from apps.users.models import User, Assignee
+from apps.users.serializers import RegisterSerializer, LoginSerializer, AssigneeSerializer
 
 
 class RegisterView(generics.GenericAPIView):
@@ -51,3 +52,10 @@ class LoginView(CreateAPIView):
                 "access": str(refresh.access_token),
             }
         )
+
+
+class AssigneeView(ModelViewSet):
+    serializer_class = AssigneeSerializer
+    queryset = Assignee.objects.all()
+
+
