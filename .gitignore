@@ -1,10 +1,12 @@
 .idea
 **/data/
 **/staticfiles/
+media
 
 
 # migrations
 apps/users/migrations
+apps/sprints/migrations
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
