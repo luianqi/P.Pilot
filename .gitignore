@@ -1,8 +1,7 @@
 .idea
 **/data/
-**/staticfiles/
 media
-
+staticfiles
 
 # migrations
 apps/users/migrations
