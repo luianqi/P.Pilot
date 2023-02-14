@@ -9,5 +9,11 @@
             "src": "/(.*)",
             "dest": "root/wsgi.py"
         }
-    ]
+    ],
+    "env": {
+        "POSTGRES_HOST": "POSTGRES_HOST",
+        "POSTGRES_DB": "POSTGRES_DB",
+        "POSTGRES_USER": "POSTGRES_USER",
+        "POSTGRES_PASSWORD": "POSTGRES_PASSWORD"
+    }
 }
