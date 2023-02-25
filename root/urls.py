@@ -15,28 +15,30 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-# from drf_yasg import openapi
-# from drf_yasg.views import get_schema_view
-# from rest_framework.permissions import AllowAny
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework.permissions import AllowAny
+
 
 from apps.users.views import RegisterView, LoginView
 
-# schema_view = get_schema_view(
-#     openapi.Info(
-#         title="Bank API",
-#         default_version='v1',
-#     ),
-#     public=True,
-#     permission_classes=[AllowAny, ],
-# )
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Bank API",
+        default_version='v1',
+    ),
+    public=True,
+    permission_classes=[AllowAny, ],
+)
 
 
 urlpatterns = [
-    # path("", schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('admin/', admin.site.urls),
-    path('users', include("apps.users.urls")),
-    path('sprints', include("apps.sprints.urls")),
+    path("", schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path("register/", RegisterView.as_view(), name='register'),
     path("login/", LoginView.as_view(), name='login'),
+    path('admin/', admin.site.urls),
+    path('', include("apps.users.urls")),
+    path('', include("apps.sprints.urls")),
+
 
 ]

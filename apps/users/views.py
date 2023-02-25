@@ -58,4 +58,3 @@ class AssigneeView(ModelViewSet):
     serializer_class = AssigneeSerializer
     queryset = Assignee.objects.all()
 
-
