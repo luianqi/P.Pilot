@@ -31,10 +31,8 @@ DEBUG = config('DEBUG')
 ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 
 CORS_ALLOWED_ORIGINS = [
-    'https://splendorous-madeleine-64ae1d.netlify.app',
     'http://localhost:3000',
-    'https://regal-naiad-c314a6.netlify.app',
-    'https://coruscating-wisp-5537e2.netlify.app'
+    'https://deluxe-liger-d5888b.netlify.app'
 ]
 # Application definition
 
