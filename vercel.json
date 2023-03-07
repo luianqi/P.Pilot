@@ -10,16 +10,20 @@
       }
     },
     {
-      "src": "static/**",
-      "use": "@vercel/static",
+      "src": "build_files.sh",
+      "use": "@vercel/static-build",
       "config": {
-        "cleanUrls": true
+        "distDir": "staticfiles"
       }
     }
   ],
   "routes": [
     {
       "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/media/(.*)",
       "dest": "/static/$1"
     },
     {
