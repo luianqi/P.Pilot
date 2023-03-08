@@ -67,7 +67,7 @@ class User(AbstractBaseUser, PermissionsMixin):
 class Assignee(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    photo = models.ImageField(upload_to="media")
+    photo = models.ImageField(upload_to="media", blank=True, null=True)
     position = models.CharField(max_length=100)
 
     def __str__(self):
