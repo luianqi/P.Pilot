@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'https://beautiful-chaja-946e12.netlify.app'
+    'https://crm-bank.vercel.app'
 ]
 # Application definition
 
