@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'corsheaders',
+    'rest_framework_recaptcha',
 
     # apps
     'apps.users',
@@ -112,12 +113,18 @@ REST_FRAMEWORK = {
     ),
 }
 
+# Recaptcha
+DRF_RECAPTCHA_SECRET_KEY = config('RECAPTCHA_PRIVATE_KEY')
+DRF_RECAPTCHA_VERIFY_ENDPOINT = 'https://www.google.com/recaptcha/api/siteverify'
+
+
 # swagger
 # SWAGGER_SETTINGS = {
 #     'OPERATIONS_SORTER': None,
 # }
-# jwt
 
+
+# jwt
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=59),

@@ -1,5 +1,4 @@
 from rest_framework import generics, status
-from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
@@ -8,6 +7,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from apps.users.models import User, Assignee
 from apps.users.serializers import RegisterSerializer, LoginSerializer, AssigneeSerializer
+from apps.users.verify_recaptcha import verify_recaptcha
 
 
 class RegisterView(generics.GenericAPIView):
@@ -27,17 +27,34 @@ class LoginView(CreateAPIView):
     permission_classes = (AllowAny,)
 
     def post(self, request):
+
+        # Perform reCAPTCHA challenge check
+        recaptcha_status = verify_recaptcha(request)
+        if recaptcha_status.get('status') != 'success':
+            return Response(
+                {"ошибка": "reCAPTCHA не пройдено"},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        # Perform user authentication check
         email = request.data["email"]
         password = request.data["password"]
 
         user = User.objects.filter(email=email).first()
 
-        if user is None:
-            raise AuthenticationFailed("Пользователь не найден!")
+        if not user:
+            return Response(
+                {"ошибка": "Пользователь не найден!"},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
 
         if not user.check_password(password):
-            raise AuthenticationFailed("Неверный пароль")
+            return Response(
+                {"ошибка": "Неверный пароль"},
+                status=status.HTTP_401_UNAUTHORIZED,
+            )
 
+        # Authentication successful, generate tokens and return response
         refresh = RefreshToken.for_user(user)
         is_superuser = user.is_superuser
 
