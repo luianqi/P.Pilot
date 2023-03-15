@@ -7,7 +7,6 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from apps.users.models import User, Assignee
 from apps.users.serializers import RegisterSerializer, LoginSerializer, AssigneeSerializer
-from apps.users.verify_recaptcha import verify_recaptcha
 
 
 class RegisterView(generics.GenericAPIView):
@@ -27,14 +26,6 @@ class LoginView(CreateAPIView):
     permission_classes = (AllowAny,)
 
     def post(self, request):
-
-        # Perform reCAPTCHA challenge check
-        recaptcha_status = verify_recaptcha(request)
-        if recaptcha_status.get('status') != 'success':
-            return Response(
-                {"ошибка": "reCAPTCHA не пройдено"},
-                status=status.HTTP_400_BAD_REQUEST,
-            )
 
         # Perform user authentication check
         email = request.data["email"]

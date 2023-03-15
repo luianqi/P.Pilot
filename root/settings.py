@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'corsheaders',
-    'rest_framework_recaptcha',
+    'drf_recaptcha',
 
     # apps
     'apps.users',
