@@ -20,7 +20,7 @@ from drf_yasg.views import get_schema_view
 from rest_framework.permissions import AllowAny
 
 
-from apps.users.views import RegisterView, LoginView
+from apps.users.views import RegisterView, LoginView, GetUsersView
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -34,11 +34,9 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path("", schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path("register/", RegisterView.as_view(), name='register'),
-    path("login/", LoginView.as_view(), name='login'),
-    path('admin/', admin.site.urls),
-    path('', include("apps.users.urls")),
-    path('', include("apps.sprints.urls")),
+    path("admin/", admin.site.urls),
+    path("", include("apps.users.urls")),
+    # path("", include("apps.projects.urls")),
 
 
 ]
