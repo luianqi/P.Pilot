@@ -1,13 +1,11 @@
-from django.urls import path, include
+from django.urls import path
 
-from rest_framework.routers import DefaultRouter
-
-from apps.users.views import AssigneeView
-
-router = DefaultRouter()
-router.register('assignee', AssigneeView)
-
+from apps.users.views import RegisterView, LoginView, GetUsersView
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path("register/", RegisterView.as_view(), name="register"),
+    path("login/", LoginView.as_view(), name="login"),
+    path("users-list/", GetUsersView.as_view(), name="users-list"),
+    path('users-list/<int:pk>/', GetUsersView.as_view(), name='user-detail'),
+
 ]
