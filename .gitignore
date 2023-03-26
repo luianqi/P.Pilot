@@ -5,7 +5,7 @@ media
 
 # migrations
 apps/users/migrations
-apps/sprints/migrations
+apps/projects/migrations
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
