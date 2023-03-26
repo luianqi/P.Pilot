@@ -1,16 +1,17 @@
-from rest_framework import generics, status
+from rest_framework import generics, status, mixins
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.viewsets import ModelViewSet
 from rest_framework_simplejwt.tokens import RefreshToken
 
-from apps.users.models import User, Assignee
-from apps.users.serializers import RegisterSerializer, LoginSerializer, AssigneeSerializer
+from apps.users.models import User
+from apps.users.permissions import IsSuperuser
+from apps.users.serializers import RegisterSerializer, LoginSerializer
 
 
 class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
+    permission_classes = [IsSuperuser]
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -62,7 +63,24 @@ class LoginView(CreateAPIView):
         )
 
 
-class AssigneeView(ModelViewSet):
-    serializer_class = AssigneeSerializer
-    queryset = Assignee.objects.all()
+class GetUsersView(mixins.ListModelMixin,
+                   mixins.RetrieveModelMixin,
+                   mixins.UpdateModelMixin,
+                   generics.GenericAPIView):
+    """
+    Returns a list of admins and managers.
+    Also provides detail view and filter.
+    """
 
+    queryset = User.objects.all()
+    serializer_class = RegisterSerializer
+    filterset_fields = ["role"]
+
+    def get(self, request, *args, **kwargs):
+        if "pk" in kwargs:
+            return self.retrieve(request, *args, **kwargs)
+        else:
+            return self.list(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
