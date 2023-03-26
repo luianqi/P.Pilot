@@ -47,11 +47,11 @@ INSTALLED_APPS = [
     'drf_yasg',
     'rest_framework',
     'corsheaders',
-    'drf_recaptcha',
+    'django_filters',
 
     # apps
     'apps.users',
-    'apps.sprints'
+    'apps.projects',
 
 ]
 
@@ -111,11 +111,10 @@ REST_FRAMEWORK = {
         "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.BasicAuthentication",
     ),
+    "DEFAULT_FILTER_BACKENDS": ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5
 }
-
-# Recaptcha
-DRF_RECAPTCHA_SECRET_KEY = config('RECAPTCHA_PRIVATE_KEY')
-DRF_RECAPTCHA_VERIFY_ENDPOINT = 'https://www.google.com/recaptcha/api/siteverify'
 
 
 # swagger
