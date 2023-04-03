@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # apps
     'apps.users',
     'apps.projects',
+    'apps.organizations',
 
 ]
 
