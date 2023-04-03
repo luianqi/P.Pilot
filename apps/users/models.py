@@ -42,10 +42,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     ADMIN = "Админ"
     MANAGER = "Менеджер"
     USER_TYPE_CHOICES = (
-        (MANAGER, "Менеджер"),
         (ADMIN, "Админ"),
+        (MANAGER, "Менеджер"),
     )
-    role = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, default=MANAGER)
+    role = models.CharField(max_length=20, choices=USER_TYPE_CHOICES, default=ADMIN)
     email = models.EmailField(unique=True)
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
