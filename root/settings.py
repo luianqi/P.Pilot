@@ -32,7 +32,8 @@ ALLOWED_HOSTS = ['.vercel.app', '127.0.0.1']
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
-    'https://crm-bank.vercel.app'
+    'https://crm-bank.vercel.app',
+    'https://crm-bank-szebiniso.vercel.app'
 ]
 # Application definition
 
