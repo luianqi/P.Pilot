@@ -35,3 +35,22 @@ class LoginSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ["id", "email", "password"]
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True, required=False)
+
+    class Meta:
+        model = User
+        fields = [
+            "id",
+            "first_name",
+            "last_name",
+            "phone_number",
+            "email",
+            "role",
+        ]
+
+    def update(self, instance, validated_data):
+        validated_data.pop("password", None)  # exclude password field
+        return super().update(instance, validated_data)
