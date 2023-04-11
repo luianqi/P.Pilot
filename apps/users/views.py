@@ -6,7 +6,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 from apps.users.models import User
 from apps.users.permissions import IsSuperuser
-from apps.users.serializers import RegisterSerializer, LoginSerializer
+from apps.users.serializers import RegisterSerializer, LoginSerializer, UserUpdateSerializer
 
 
 class RegisterView(generics.GenericAPIView):
@@ -73,7 +73,7 @@ class GetUsersView(mixins.ListModelMixin,
     """
 
     queryset = User.objects.all()
-    serializer_class = RegisterSerializer
+    serializer_class = UserUpdateSerializer
     filterset_fields = ["role"]
 
     def get(self, request, *args, **kwargs):
