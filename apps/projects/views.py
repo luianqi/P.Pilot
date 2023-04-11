@@ -1,12 +1,12 @@
-# from rest_framework.viewsets import ModelViewSet
-#
-# from apps.projects.models import Project, ProjectAssignee, Sprint, Task
-# from apps.projects.serializers import ProjectSerializer, ProjectAssigneeSerializer, SprintSerializer, TaskSerializer
-#
-#
-# class ProjectView(ModelViewSet):
-#     serializer_class = ProjectSerializer
-#     queryset = Project.objects.all()
+from rest_framework.viewsets import ModelViewSet
+
+from apps.projects.models import Project
+from apps.projects.serializers import ProjectSerializer
+
+
+class ProjectView(ModelViewSet):
+    serializer_class = ProjectSerializer
+    queryset = Project.objects.all()
 #
 #
 # class ProjectAssigneeView(ModelViewSet):

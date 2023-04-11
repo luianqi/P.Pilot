@@ -1,20 +1,16 @@
-# from rest_framework.serializers import ModelSerializer
-#
-# from apps.projects.models import Project, ProjectAssignee, Sprint, Task
-#
-#
-# class ProjectSerializer(ModelSerializer):
-#     class Meta:
-#         model = Project
-#         fields = ["id",
-#                   "manager",
-#                   "name",
-#                   "description",
-#                   "notes",
-#                   "status",
-#                   "assignees",
-#                   ]
-#         read_only_fields = ["assignees"]
+from rest_framework.serializers import ModelSerializer
+
+from apps.projects.models import Project
+
+class ProjectSerializer(ModelSerializer):
+    class Meta:
+        model = Project
+        fields = ["id",
+                  "manager",
+                  "name",
+                  "description",
+                  "status",
+                  ]
 #
 #
 # class ProjectAssigneeSerializer(ModelSerializer):
