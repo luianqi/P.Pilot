@@ -66,6 +66,7 @@ class LoginView(CreateAPIView):
 class GetUsersView(mixins.ListModelMixin,
                    mixins.RetrieveModelMixin,
                    mixins.UpdateModelMixin,
+                   mixins.DestroyModelMixin,
                    generics.GenericAPIView):
     """
     Returns a list of admins and managers.
@@ -84,3 +85,9 @@ class GetUsersView(mixins.ListModelMixin,
 
     def put(self, request, *args, **kwargs):
         return self.update(request, *args, **kwargs)
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
