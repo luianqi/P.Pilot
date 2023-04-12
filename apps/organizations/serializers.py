@@ -34,11 +34,3 @@ class OrganizationSerializer(serializers.ModelSerializer):
 
         return organization
 
-    def update(self, instance, validated_data):
-        admin_data = validated_data.pop("admin", None)
-        if admin_data:
-            user_serializer = UserUpdateSerializer(instance.admin, data=admin_data, partial=True)
-            user_serializer.is_valid(raise_exception=True)
-            user_serializer.save()
-
-        return super().update(instance, validated_data)
