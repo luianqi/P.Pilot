@@ -38,7 +38,6 @@ class LoginSerializer(serializers.ModelSerializer):
 
 
 class UserUpdateSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, required=False)
 
     class Meta:
         model = User
@@ -51,6 +50,3 @@ class UserUpdateSerializer(serializers.ModelSerializer):
             "role",
         ]
 
-    def update(self, instance, validated_data):
-        validated_data.pop("password", None)  # exclude password field
-        return super().update(instance, validated_data)
