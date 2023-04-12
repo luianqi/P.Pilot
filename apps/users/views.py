@@ -5,13 +5,13 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from apps.users.models import User
-from apps.users.permissions import IsSuperuser
+from apps.users.permissions import IsAdmin
 from apps.users.serializers import RegisterSerializer, LoginSerializer, UserUpdateSerializer
 
 
 class RegisterView(generics.GenericAPIView):
     serializer_class = RegisterSerializer
-    permission_classes = [IsSuperuser]
+    permission_classes = [IsAdmin]
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
