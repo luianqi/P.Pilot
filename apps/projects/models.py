@@ -14,9 +14,18 @@ class Project(models.Model):
     name = models.CharField(max_length=150)
     description = models.CharField(max_length=255)
     status = models.CharField(choices=ProjectStatus.choices, max_length=255)
+    is_archived = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name}"
+
+
+class Iteration(models.Model):
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+
+
 #
 #
 # assignees = models.ManyToManyField(Assignee, through="ProjectAssignee")

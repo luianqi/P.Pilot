@@ -1,12 +1,17 @@
 from rest_framework.viewsets import ModelViewSet
 
-from apps.projects.models import Project
-from apps.projects.serializers import ProjectSerializer
+from apps.projects.models import Project, Iteration
+from apps.projects.serializers import ProjectSerializer, IterationSerializer
 
 
 class ProjectView(ModelViewSet):
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
+
+
+class IterationView(ModelViewSet):
+    serializer_class = IterationSerializer
+    queryset = Iteration.objects.all()
 #
 #
 # class ProjectAssigneeView(ModelViewSet):

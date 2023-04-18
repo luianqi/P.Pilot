@@ -1,6 +1,8 @@
+from drf_extra_fields.relations import PresentablePrimaryKeyRelatedField
 from rest_framework.serializers import ModelSerializer
 
-from apps.projects.models import Project
+from apps.projects.models import Project, Iteration
+
 
 class ProjectSerializer(ModelSerializer):
     class Meta:
@@ -10,6 +12,22 @@ class ProjectSerializer(ModelSerializer):
                   "name",
                   "description",
                   "status",
+                  "is_archived"
+                  ]
+
+
+class IterationSerializer(ModelSerializer):
+    project = PresentablePrimaryKeyRelatedField(
+        queryset=Project.objects.all(),
+        presentation_serializer=ProjectSerializer
+    )
+
+    class Meta:
+        model = Iteration
+        fields = ["id",
+                  "project",
+                  "start_date",
+                  "end_date"
                   ]
 #
 #
