@@ -11,6 +11,7 @@ django-filter==22.1
 django-ipware==4.0.2
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
+drf-extra-fields==3.4.1
 drf-recaptcha==2.2.2
 drf-yasg==1.21.5
 idna==3.4
