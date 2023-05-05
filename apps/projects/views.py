@@ -1,7 +1,7 @@
 from rest_framework.viewsets import ModelViewSet
 
-from apps.projects.models import Project, Iteration
-from apps.projects.serializers import ProjectSerializer, IterationSerializer
+from apps.projects.models import Project, Iteration, Task
+from apps.projects.serializers import ProjectSerializer, IterationSerializer, TaskSerializer
 
 
 class ProjectView(ModelViewSet):
@@ -12,6 +12,13 @@ class ProjectView(ModelViewSet):
 class IterationView(ModelViewSet):
     serializer_class = IterationSerializer
     queryset = Iteration.objects.all()
+    filterset_fields = ["project"]
+
+
+class TaskView(ModelViewSet):
+    serializer_class = TaskSerializer
+    queryset = Task.objects.all()
+    filterset_fields = ["iteration_id"]
 #
 #
 # class ProjectAssigneeView(ModelViewSet):

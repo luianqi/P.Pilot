@@ -10,10 +10,18 @@ class ProjectStatus(models.TextChoices):
 
 
 class Project(models.Model):
-    manager = models.ForeignKey(User, on_delete=models.CASCADE)
+    admin = models.ForeignKey(User,
+                              on_delete=models.CASCADE,
+                              editable=False,
+                              related_name="admin_id",
+                              blank=True,
+                              null=True)
+    manager = models.ForeignKey(User,
+                                on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
     description = models.CharField(max_length=255)
-    status = models.CharField(choices=ProjectStatus.choices, max_length=255)
+    status = models.CharField(choices=ProjectStatus.choices,
+                              max_length=255)
     is_archived = models.BooleanField(default=False)
 
     def __str__(self):
@@ -21,10 +29,20 @@ class Project(models.Model):
 
 
 class Iteration(models.Model):
-    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    project = models.ForeignKey(Project,
+                                on_delete=models.CASCADE)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
 
+
+class Task(models.Model):
+    iteration_id = models.ForeignKey(Iteration,
+                                     on_delete=models.CASCADE)
+    name = models.CharField(max_length=255)
+    is_finished = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.name}"
 
 #
 #
