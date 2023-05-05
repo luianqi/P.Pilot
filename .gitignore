@@ -4,10 +4,10 @@ media
 staticfiles
 
 
-# migrations
-apps/users/migrations
-apps/projects/migrations
-apps/organizations/migrations
+## migrations
+#apps/users/migrations
+#apps/projects/migrations
+#apps/organizations/migrations
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
