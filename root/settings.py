@@ -30,9 +30,10 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['.vercel.app',
                  'localhost',
-                 'http://64.226.101.158',
+                 '64.226.101.158',
                  '0.0.0.0',
-                 'p-pilot',
+                 'p-pilot.com',
+                 'www.p-pilot.com'
                  ]
 
 CORS_ALLOW_CREDENTIALS = True
