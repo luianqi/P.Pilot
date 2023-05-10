@@ -30,7 +30,7 @@ DEBUG = config('DEBUG')
 
 ALLOWED_HOSTS = ['.vercel.app',
                  'localhost',
-                 '64.226.101.158',
+                 # '64.226.101.158',
                  '0.0.0.0',
                  'p-pilot.com',
                  'www.p-pilot.com'
