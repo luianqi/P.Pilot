@@ -29,7 +29,7 @@ services:
 
   nginx:
     build: ./nginx
-    restart: always
+    restart: on-failure
     ports:
       - "80:80"
       - "443:443"
