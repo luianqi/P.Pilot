@@ -34,7 +34,6 @@ services:
       - "80:80"
     volumes:
       - static:/staticfiles
-      - ./nginx/prod:/etc/nginx/conf.d/:ro
 
     depends_on:
       - web
