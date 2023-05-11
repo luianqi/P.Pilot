@@ -6,6 +6,7 @@ from apps.organizations.serializers import OrganizationSerializer
 from apps.users.permissions import IsSuperuser
 
 
+
 class OrganizationView(viewsets.ModelViewSet):
     queryset = Organization.objects.all()
     serializer_class = OrganizationSerializer
