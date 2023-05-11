@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['.vercel.app',
                  # '64.226.101.158',
                  '0.0.0.0',
                  'p-pilot',
+                 'https://www.p-pilot.com'
                  ]
 
 CORS_ALLOW_CREDENTIALS = True
