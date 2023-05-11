@@ -2,6 +2,7 @@
 **/data/
 media
 staticfiles
+nginx
 
 
 ## migrations

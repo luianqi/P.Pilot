@@ -27,16 +27,16 @@ services:
     env_file:
       - .env
 
-  nginx:
-    build: ./nginx
-    restart: on-failure
-    ports:
-      - "80:80"
-    volumes:
-      - static:/staticfiles
-
-    depends_on:
-      - web
-volumes:
-  static:
+#  nginx:
+#    build: ./nginx
+#    restart: on-failure
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - static:/staticfiles
+#
+#    depends_on:
+#      - web
+#volumes:
+#  static:
 
