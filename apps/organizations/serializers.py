@@ -13,6 +13,7 @@ class OrganizationSerializer(serializers.ModelSerializer):
         fields = ["id",
                   "name",
                   "field",
+                  "photo",
                   "description",
                   "email",
                   "phone_number",
