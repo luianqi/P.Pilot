@@ -1,3 +1,1 @@
 FROM nginx:stable-alpine
-
-COPY prod/nginx.conf /etc/nginx/conf.d/nginx.conf
