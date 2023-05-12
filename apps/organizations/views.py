@@ -1,4 +1,5 @@
 from rest_framework import viewsets, status
+from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
 from rest_framework.response import Response
 
 from apps.organizations.models import Organization
@@ -6,10 +7,11 @@ from apps.organizations.serializers import OrganizationSerializer
 from apps.users.permissions import IsSuperuser
 
 
-
 class OrganizationView(viewsets.ModelViewSet):
     queryset = Organization.objects.all()
     serializer_class = OrganizationSerializer
+    parser_class = [MultiPartParser, FormParser, JSONParser]
+
     # permission_classes = [IsSuperuser]
 
     def create(self, request, *args, **kwargs):
