@@ -14,7 +14,7 @@ class ProjectFileSerializer(ModelSerializer):
 
 
 class ProjectSerializer(ModelSerializer):
-    files = ProjectFileSerializer(many=True)
+    files = ProjectFileSerializer(many=True, required=False)
 
     class Meta:
         model = Project
@@ -25,6 +25,9 @@ class ProjectSerializer(ModelSerializer):
                   "description",
                   "status",
                   "files",
+                  "budget",
+                  "start_date",
+                  "end_date",
                   "is_archived"
                   ]
 
