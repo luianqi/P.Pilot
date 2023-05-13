@@ -24,6 +24,8 @@ class Project(models.Model):
                               max_length=255)
     budget = models.CharField(default="0", max_length=150)
     is_archived = models.BooleanField(default=False)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.name}"
