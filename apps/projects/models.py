@@ -22,10 +22,21 @@ class Project(models.Model):
     description = models.CharField(max_length=255)
     status = models.CharField(choices=ProjectStatus.choices,
                               max_length=255)
+    budget = models.CharField(default="0", max_length=150)
     is_archived = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name}"
+
+
+class ProjectFile(models.Model):
+    project_id = models.ForeignKey(Project,
+                                   on_delete=models.CASCADE,
+                                   related_name="files")
+    file = models.FileField(default="default.pdf", upload_to="media")
+
+    def __str__(self):
+        return f"{self.file}"
 
 
 class Iteration(models.Model):

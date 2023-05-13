@@ -1,10 +1,21 @@
 from drf_extra_fields.relations import PresentablePrimaryKeyRelatedField
 from rest_framework.serializers import ModelSerializer
 
-from apps.projects.models import Project, Iteration, Task
+from apps.projects.models import Project, Iteration, Task, ProjectFile
+
+
+class ProjectFileSerializer(ModelSerializer):
+    class Meta:
+        model = ProjectFile
+        fields = ["id",
+                  "project_id",
+                  "file"
+                  ]
 
 
 class ProjectSerializer(ModelSerializer):
+    files = ProjectFileSerializer(many=True)
+
     class Meta:
         model = Project
         fields = ["id",
@@ -13,6 +24,7 @@ class ProjectSerializer(ModelSerializer):
                   "name",
                   "description",
                   "status",
+                  "files",
                   "is_archived"
                   ]
 
