@@ -11,8 +11,7 @@ class OrganizationView(viewsets.ModelViewSet):
     queryset = Organization.objects.all()
     serializer_class = OrganizationSerializer
     parser_class = [MultiPartParser, FormParser, JSONParser]
-
-    # permission_classes = [IsSuperuser]
+    permission_classes = [IsSuperuser]
 
     def create(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
