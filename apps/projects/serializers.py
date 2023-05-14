@@ -1,7 +1,11 @@
 from drf_extra_fields.relations import PresentablePrimaryKeyRelatedField
+from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
 from rest_framework.serializers import ModelSerializer
 
 from apps.projects.models import Project, Iteration, Task, ProjectFile
+from apps.users.models import User
+from apps.users.serializers import RegisterSerializer
 
 
 class ProjectFileSerializer(ModelSerializer):
@@ -9,12 +13,19 @@ class ProjectFileSerializer(ModelSerializer):
         model = ProjectFile
         fields = ["id",
                   "project_id",
-                  "file"
+                  "file",
                   ]
 
 
 class ProjectSerializer(ModelSerializer):
-    files = ProjectFileSerializer(many=True, required=False)
+    files = ProjectFileSerializer(many=True, read_only=True)
+    uploaded_files = serializers.ListField(
+        child=serializers.FileField(), write_only=True
+    )
+    manager = PresentablePrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+        presentation_serializer=RegisterSerializer
+    )
 
     class Meta:
         model = Project
@@ -25,11 +36,25 @@ class ProjectSerializer(ModelSerializer):
                   "description",
                   "status",
                   "files",
+                  "uploaded_files",
                   "budget",
                   "start_date",
                   "end_date",
                   "is_archived"
                   ]
+
+    def create(self, validated_data):
+        uploaded_files = validated_data.pop("uploaded_files")
+        project = Project.objects.create(**validated_data)
+        for file in uploaded_files:
+            ProjectFile.objects.create(project_id=project, file=file)
+        return project
+
+    def update(self, instance, validated_data):
+        uploaded_files = validated_data.pop("uploaded_files", [])
+        for file in uploaded_files:
+            ProjectFile.objects.create(project_id=instance, file=file)
+        return super().update(instance, validated_data)
 
 
 class IterationSerializer(ModelSerializer):
