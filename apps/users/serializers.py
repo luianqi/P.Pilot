@@ -47,7 +47,7 @@ class UserUpdateSerializer(serializers.ModelSerializer):
             "first_name",
             "last_name",
             "phone_number",
-            "photo"
+            "photo",
             "email",
             "role",
         ]
