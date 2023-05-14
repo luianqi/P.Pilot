@@ -1,4 +1,6 @@
+from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser, JSONParser
+from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from apps.projects.models import Project, Iteration, Task, ProjectFile
@@ -8,12 +10,12 @@ from apps.projects.serializers import ProjectSerializer, IterationSerializer, Ta
 class ProjectFileView(ModelViewSet):
     serializer_class = ProjectFileSerializer
     queryset = ProjectFile.objects.all()
-    parser_class = [MultiPartParser, FormParser, JSONParser]
 
 
 class ProjectView(ModelViewSet):
     serializer_class = ProjectSerializer
     queryset = Project.objects.all()
+    parser_class = [MultiPartParser, FormParser, JSONParser]
 
 
 class IterationView(ModelViewSet):
