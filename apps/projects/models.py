@@ -44,9 +44,13 @@ class ProjectFile(models.Model):
 class Iteration(models.Model):
     project = models.ForeignKey(Project,
                                 on_delete=models.CASCADE)
+    name = models.CharField(default="none", max_length=100)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
     is_completed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Task(models.Model):
