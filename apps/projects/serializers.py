@@ -67,6 +67,7 @@ class IterationSerializer(ModelSerializer):
         model = Iteration
         fields = ["id",
                   "project",
+                  "is_completed",
                   "start_date",
                   "end_date"
                   ]

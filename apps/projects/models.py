@@ -46,6 +46,7 @@ class Iteration(models.Model):
                                 on_delete=models.CASCADE)
     start_date = models.DateField(null=True, blank=True)
     end_date = models.DateField(null=True, blank=True)
+    is_completed = models.BooleanField(default=False)
 
 
 class Task(models.Model):
